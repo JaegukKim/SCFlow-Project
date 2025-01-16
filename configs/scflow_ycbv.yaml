@@ -1,0 +1,88 @@
+dataset:
+  dataset_name: 'ycbv'
+  #obj_list: [2]
+  obj_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+  obj_name_list: ['master_chef_can', 'cracker_box', 'sugar_box', 'tomato_soup_can', 'mustard_bottle', 'tuna_fish_can', 'pudding_box', 'gelatin_box', 'potted_meat_can', 'banana', 'picher_base', 'bleach_cleanser', 'bowl', 'mug', 'power_drill', 'wood_block', 'scissors', 'large_marker', 'large_clamp', 'extra_large_clamp', 'foam_brick']
+  is_pbr: False
+  batch_size: 8 #16 #32
+  image_size: 256
+  ref_size: 256
+  geo_size: 64
+  # N_region: 64
+  represent_mode: 'xyz'   # 'positional' or 'xyz'
+  ray_mode: false
+  # n_freqs: 5
+  num_input_views: 1
+  num_query_views: 1
+  use_carved: False
+  # feature_size: {'feat1':[32, 32], 'feat2':[16, 16], 'feat3':[8, 8]}
+  temperature: 0.1
+  nth_ref: 1
+  # N_template: 128
+  carving_size: 64
+  data_domain: ['real', 'pbr']
+  # N_freq: 5
+  # N_z: 64 ??
+  # N_region: 64
+
+model:
+  image_size: 256
+  geo_size: 64
+  # N_region: 64
+  num_class: 21
+  # ref_size: 256
+  #num_input_views: 4
+  #num_query_views: 1
+  #transformer_dim: 256
+  #num_class: 1   # number of object categories
+  represent_mode: 'xyz'   # 'positional' or 'xyz'
+  ray_mode: false
+  #n_freqs: 5
+  # is_adain: false
+  feature_size: {'feat1':[32, 32], 'feat2':[16, 16], 'feat3':[8, 8]}
+  connect_level: []   #[1, 2, 3]
+  temperature: 0.1
+  backbone_model: 'res34' # 'res34' or 'convnext_base' or 'convnext_tiny'
+  # gw_encoder:
+  #   num_layers: 1
+  #   num_heads: 1
+  #   use_geometry: True  
+  # fw_decoder:
+  #   num_layers: 4
+  #   num_heads: 1
+  #   is_attn_residual: True
+# renderer:
+#   ref_size: 64
+training:
+  load_path: null
+  raft_load_path: 'RAFT/raft_large_C_T_SKHT_V2-ff5fadd5.pth'
+  #raft_load_path: null          
+  use_mixed_precision: False
+  exp_tag: 'bop_specific/scflow_base_ref'
+  ref_size: 256
+  img_size: 256
+  geo_size: 64
+  num_workers: 8
+  # temperature: 0.1
+  represent_mode: 'xyz'   # 'positional' or 'xyz'
+  ray_mode: false
+  #n_freqs: 5
+  # pool_size: 4
+  occlusion_augmentation: false
+  feature_size: {'feat1':[32, 32], 'feat2':[16, 16], 'feat3':[8, 8]}
+  loss: ['coord', 'mask', 'mask_visib', 'error', 'grid_matching'] #'coord', 'mask', 'mask_visib', 'error', 'attn', 'grid_matching', 'consistency'
+  optim:
+    lr: 2e-4
+    mode: 'step'  # 'step' or 'cosine'
+    update_after: 20000
+    gamma: 0.5
+  validation:
+    validate_after: 5000
+  logging:
+    visualize_after: 1000 
+  num_steps: 100000 #10000
+infer:
+  scflow_load_path: null   
+  geo_load_path: null
+  visualize_after: 100
+  num_workers: 0

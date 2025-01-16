@@ -1,0 +1,135 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "current",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--config-path", "configs/bop_specific_HGPose_linear.yaml"
+            ]
+        },
+        {
+            "name": "train_scflow_base_ref",
+            "type": "python",
+            "request": "launch",
+            "program": "scripts/train_scflow_base_ref.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"2", "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT":"200"},
+            "justMyCode": true,
+            "args": [
+                "--scheduler", "False",
+                "--debug", "true",
+                "--config-path", "configs/scflow_ycbv.yaml",
+            ]
+        },
+        {
+            "name": "infer_scflow_base_posecnn",
+            "type": "python",
+            "request": "launch",
+            "program": "scripts/infer_scflow_base_posecnn.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"2", "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT":"200"},
+            "args": [
+                "--debug", "false",
+                "--config-path", "saved/bop_specific/scflow_base_ref/scflow_ycbv.yaml",
+            ]
+        },
+        {
+            "name": "infer_scflow_geo_prob_cosypose_bop",
+            "type": "python",
+            "request": "launch",
+            "program": "scripts/infer_scflow_geo_prob_cosypose_bop.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"1", "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT":"200"},
+            "args": [
+                "--debug", "false",
+                "--config-path", "saved/bop_specific/scflow_geo_prob_adaptive_refine_2_iter_4_jitter_1_backward_loss_30/scflow_geo_prob_ycbv.yaml",
+            ]
+        },
+        {
+            "name": "infer_scflow_base_posecnn_bopdet",
+            "type": "python",
+            "request": "launch",
+            "program": "scripts/infer_scflow_base_posecnn_bopdet.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"7", "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT":"200"},
+            "args": [
+                "--debug", "false",
+                "--config-path", "saved/bop_specific/scflow_base_ref_gt_delta_dpmloss_fullmesh_jitter/scflow_ycbv.yaml",
+            ]
+        },
+        {
+            "name": "infer_scflow_base_ref",
+            "type": "python",
+            "request": "launch",
+            "program": "scripts/infer_scflow_base_ref.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"5", "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT":"200"},
+            "args": [
+                "--debug", "false",
+                "--config-path", "saved/bop_specific/scflow_base_ref_gt_delta_dpmloss_fullmesh_jitter/scflow_ycbv.yaml",
+            ]
+        },
+        {
+            "name": "infer_scflow_base",
+            "type": "python",
+            "request": "launch",
+            "program": "scripts/infer_scflow_base.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"7", "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT":"200"},
+            "args": [
+                "--debug", "false",
+                "--config-path", "saved/bop_specific/scflow_base_ref_gt_delta_dpmloss_fullmesh_jitter/scflow_ycbv.yaml",
+            ]
+        },
+        {
+            "name": "train_scflow_base_ref",
+            "type": "python",
+            "request": "launch",
+            "program": "scripts/train_scflow_base_ref.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"2", "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT":"200"},
+            "justMyCode": true,
+            "args": [
+                "--scheduler", "False",
+                "--debug", "true",
+                "--config-path", "configs/scflow_ycbv.yaml",
+            ]
+        },
+        {
+            "name": "train_scflow_geo_prob",
+            "type": "python",
+            "request": "launch",
+            "program": "scripts/train_scflow_geo_prob.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"0", "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT":"200"},
+            "justMyCode": true,
+            "args": [
+                "--scheduler", "False",
+                "--debug", "true",
+                "--config-path", "configs/scflow_geo_prob_lmo_pbr.yaml",
+            ]
+        },
+        {
+            "name": "train_scflow_geo_ref2",
+            "type": "python",
+            "request": "launch",
+            "program": "scripts/train_scflow_geo_ref2.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"4", "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT":"200"},
+            "justMyCode": true,
+            "args": [
+                "--scheduler", "False",
+                "--debug", "true",
+                "--config-path", "configs/scflow_ycbv.yaml",
+            ]
+        },
+    ]
+}

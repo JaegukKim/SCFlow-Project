@@ -1,0 +1,10 @@
+{
+    "git.ignoreLimitWarning": true,
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.diagnosticSeverityOverrides": { 
+        "reportUnboundVariable" : "none", 
+        "reportImplicitStringConcatenation" : "warning",
+        "reportMissingImports": "none"
+    } 
+
+}
